@@ -20,6 +20,4 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: nibble
-  - board: nice_nano_v2
-    shield: corne_right nice_oled
+    shield: nibble nice_oled

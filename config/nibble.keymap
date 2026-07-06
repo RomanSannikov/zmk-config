@@ -24,6 +24,12 @@
         };
     };
 
+    underglow_caps_indicator {
+        compatible = "zmk,ug-indicator-caps-lock";
+        led-strip = <&led_strip>;
+        color = <255 0 0>;
+    };
+
     keymap {
         compatible = "zmk,keymap";
 

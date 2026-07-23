@@ -17,6 +17,24 @@ For this build I chose Gateron G Pro Two-Stage Spring Silver switches and TX AP 
 
 One of the goals of this build was to make the keyboard wireless so I went with a nicenano v2. I still need to add a battery and a power switch.
 
+## OLED animation
+
+The OLED UI is implemented locally in `boards/shields/nibble_oled` and does not depend on an
+external display module. The upstream `nibble` shield still provides the SSD1306 hardware
+definition, while `nibble_oled` owns the screen layout and animation.
+
+The left half of the native 128x32 display shows a 64x32 cat. It remains on the idle frame until a
+key press, alternates between left- and right-paw strike frames, and returns to idle 100 ms after
+the latest press. Battery, output profile, active layer, and WPM are shown on the right half.
+
+The three frames are 1-bit indexed arrays in
+`boards/shields/nibble_oled/assets/bongo_cat_frames.c`. Each array starts with an eight-byte LVGL
+palette followed by 256 bytes of row-major pixel data. Edit those arrays and keep all three frame
+dimensions and data sizes identical when changing the artwork.
+
+The display intentionally remains on and keyboard deep sleep is disabled. This makes the idle cat
+permanently visible, but increases battery use and OLED wear.
+
 ## Setback
 
 ![Nibble 65 setback](nibble65_bypass.jpg)
